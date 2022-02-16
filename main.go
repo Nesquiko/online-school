@@ -1,7 +1,7 @@
 package main
 
-import "github.com/pkg/browser"
+import "github.com/nesquiko/online-school/pkg/cli"
 
 func main() {
-	browser.OpenURL("https://github.com/Nesquiko")
+	cli.StartSession()
 }

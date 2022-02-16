@@ -1,4 +1,4 @@
-module github/nesquiko/online-school
+module github.com/nesquiko/online-school
 
 go 1.17
 
