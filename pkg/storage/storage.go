@@ -1,14 +1,15 @@
 package storage
 
 import (
+	"errors"
 	"sort"
 	"strings"
 )
 
-var lectureLinks map[string]string
+var lectureURLs map[string]string
 
 func init() {
-	lectureLinks = map[string]string{
+	lectureURLs = map[string]string{
 		"tzvi": "https://fiit-stu.webex.com/fiit-stu/j.php?MTID=me60ec3ca6039d3fe9b726760cc372663",
 		"oop":  "https://fiit-stu.webex.com/meet/vranic",
 		"ml":   "https://fiit.webex.com/fiit/j.php?MTID=mb516e06b66ffdb9afaa261bd7d29e6d0",
@@ -18,8 +19,8 @@ func init() {
 }
 
 func GetLectureNames() ([]string, error) {
-	keys := make([]string, 0, len(lectureLinks))
-	for k := range lectureLinks {
+	keys := make([]string, 0, len(lectureURLs))
+	for k := range lectureURLs {
 		keys = append(keys, strings.ToUpper(k))
 	}
 
@@ -30,5 +31,10 @@ func GetLectureNames() ([]string, error) {
 
 func GetLectureLink(lecture string) (string, error) {
 
-	return "https://github.com/Nesquiko", nil
+	url, ok := lectureURLs[lecture]
+	if !ok {
+		return "", errors.New("invalid lecture name")
+	}
+
+	return url, nil
 }
