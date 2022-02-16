@@ -29,10 +29,7 @@ func StartSession() {
 }
 
 func getLecture() (string, error) {
-	lectureNames, err := storage.GetLectureNames()
-	if err != nil {
-		return "", err
-	}
+	lectureNames := storage.GetLectureNames()
 
 	fmt.Println("\n\x1b[32;1mWhat lecture do you want to join?\x1b[0m")
 	for _, v := range lectureNames[:len(lectureNames)-1] {
@@ -41,7 +38,7 @@ func getLecture() (string, error) {
 	fmt.Printf("%s?\n", lectureNames[len(lectureNames)-1])
 
 	var lecture string
-	_, err = fmt.Scanln(&lecture)
+	_, err := fmt.Scanln(&lecture)
 	if err != nil {
 		return "", err
 	}

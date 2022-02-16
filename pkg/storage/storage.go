@@ -18,7 +18,7 @@ func init() {
 	}
 }
 
-func GetLectureNames() ([]string, error) {
+func GetLectureNames() []string {
 	keys := make([]string, 0, len(lectureURLs))
 	for k := range lectureURLs {
 		keys = append(keys, strings.ToUpper(k))
@@ -26,7 +26,7 @@ func GetLectureNames() ([]string, error) {
 
 	sort.Strings(keys)
 
-	return keys, nil
+	return keys
 }
 
 func GetLectureLink(lecture string) (string, error) {
